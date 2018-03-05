@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="ElectronAdbClient">
 <head>
   <meta charset="UTF-8">
   <!-- css files -->
@@ -7,10 +7,11 @@
   <link rel="stylesheet" type="text/css" href="../css/app-style.css">
   <!-- JavaScript files -->
   <script src="../js/libs/angular.js"></script>
+  <script src="../js/index.js"></script>
 
   <title>Electron adb Client</title>
 </head>
-<body class="no-thank-yu">
+<body ng-controller="indexController" class="no-thank-yu">
   <div class="container">
     <!-- Devices -->
     <div class="row">
@@ -21,10 +22,13 @@
                   Devices:
               </div>
               <div class="col-sm-8">
-                  --
+                {{device}}
               </div>
               <div class="col-sm-2">
-                  <button type="button" class="btn btn-primary btn-block">Reload</button>
+                <button type="button" class="btn btn-primary btn-block"
+                 ng-click="reloadDevices()" ng-disabled="isDevicesLoading">
+                  {{ReloadBtnLabel}}
+                </button>
               </div>
             </div>
           </div>
@@ -47,7 +51,7 @@
                 </div>
                 <div class="checkbox">
                   <label>
-                    <input type="checkbox">既にインストールされている場合、上書きインストールする
+                    <input type="checkbox">既にインストールされている場合、上書きする
                   </label>
                 </div>
               </div>
