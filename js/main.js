@@ -25,7 +25,7 @@ app.on('ready', function() {
     x: 0,
     y: 0
   });
-  mainWindow.loadURL('file://' + __dirname + '/index.html');
+  mainWindow.loadURL('file://' + __dirname + '/../html/index.html');
 
   // ウィンドウが閉じられたらアプリも終了
   mainWindow.on("closed", function() {
