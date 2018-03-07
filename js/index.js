@@ -15,8 +15,8 @@ var mSubWindow = null;
 
 // コントローラー
 app.controller('indexController',
-    ['$scope', '$window',
-    function($scope, $window) {
+    ['$scope', '$window', '$timeout',
+    function($scope, $window, $timeout) {
         // 画面の初期化処理
         init($scope);
 
@@ -26,12 +26,23 @@ app.controller('indexController',
             $scope.ReloadBtnLabel = "Loading...";
             $scope.isDevicesLoading = true;
 
-            // adb devices実行（同期）
-            $scope.device = adb.devices();
-
-            // ロード終了
-            $scope.ReloadBtnLabel = "Reload";
-            $scope.isDevicesLoading = false;
+            // adb devices実行（Promise）
+            adb.devices().then(function(device) {
+                $timeout(function() {
+                    $scope.device = "DeviceID: " + device.id
+                                    + "/ ModelName: " + device.modelName;
+                }, 0);
+            }, function(error) {
+                $timeout(function() {
+                    $scope.device = "Error: " + error;
+                }, 0);
+            }).then(function() {
+                $timeout(function() {
+                    // ロード終了
+                    $scope.ReloadBtnLabel = "Reload";
+                    $scope.isDevicesLoading = false;
+                }, 0);
+            });
         }
 
         function init(scope) {
