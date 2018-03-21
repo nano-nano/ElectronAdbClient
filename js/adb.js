@@ -24,3 +24,49 @@ exports.devices = function() {
         });
     });
 }
+
+exports.install = function(path, isUpdate) {
+    // コマンドの準備
+    var command = isUpdate ? "adb install -r " : "adb install ";
+    command = command + path;
+
+    return new Promise(function(resolve, reject) {
+        exec(command, function(error, stdout, stderr) {
+            if (stdout == "Success\n") {
+                resolve();
+            } else {
+                reject("インストールに失敗しました");
+            }
+        });
+    });
+}
+
+exports.uninstall = function(packageName) {
+    // コマンドの準備
+    var command = "adb uninstall " + packageName;
+
+    return new Promise(function(resolve, reject) {
+        exec(command, function(error, stdout, stderr) {
+            if (stdout == "Success\n") {
+                resolve();
+            } else {
+                reject("アンインストールに失敗しました");
+            }
+        });
+    });
+}
+
+exports.clearData = function(packageName) {
+    // コマンドの準備
+    var command = "adb shell pm clear " + packageName;
+
+    return new Promise(function(resolve, reject) {
+        exec(command, function(error, stdout, stderr) {
+            if (stdout == "Success\n") {
+                resolve();
+            } else {
+                reject("アプリデータのクリアに失敗しました");
+            }
+        });
+    });
+}

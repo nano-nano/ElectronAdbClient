@@ -44,19 +44,23 @@
               </div>
               <div class="col-sm-8">
                 <div class="input-group">
-                  <input type="text" class="form-control">
+                  <input type="text" class="form-control" ng-model="installApkPath">
                   <span class="input-group-btn">
-                    <button class="btn btn-default" type="button">Select apk</button>
+                    <button class="btn btn-default" type="button"
+                     ng-click="selectInstallApk()">Select apk</button>
                   </span>
                 </div>
                 <div class="checkbox">
                   <label>
-                    <input type="checkbox">既にインストールされている場合、上書きする
+                    <input type="checkbox" ng-model="isUpdateInstall">既にインストールされている場合、上書きする
                   </label>
                 </div>
               </div>
               <div class="col-sm-2">
-                  <button type="button" class="btn btn-primary btn-block">Install</button>
+                <button type="button" class="btn btn-primary btn-block"
+                 ng-click="installApk()" ng-disabled="isApkInstalling">
+                   {{InstallBtnLabel}}
+                </button>
               </div>
             </div>
           </div>
@@ -71,10 +75,14 @@
                   Uninstall:
               </div>
               <div class="col-sm-8">
-                <input type="text" class="form-control" placeholder="Input package name to uninstall.">
+                <input type="text" class="form-control"
+                 placeholder="Input package name to uninstall." ng-model="uninstallPackage">
               </div>
               <div class="col-sm-2">
-                  <button type="button" class="btn btn-primary btn-block">Uninstall</button>
+                <button type="button" class="btn btn-primary btn-block"
+                 ng-click="uninstall()" ng-disabled="isUninstalling">
+                  {{UninstallBtnLabel}}
+                </button>
               </div>
             </div>
           </div>
@@ -89,10 +97,14 @@
                   Clear app data:
               </div>
               <div class="col-sm-8">
-                <input type="text" class="form-control" placeholder="Input package name to clear.">
+                <input type="text" class="form-control"
+                 placeholder="Input package name to clear." ng-model="clearPackage">
               </div>
               <div class="col-sm-2">
-                  <button type="button" class="btn btn-primary btn-block">Clear</button>
+                  <button type="button" class="btn btn-primary btn-block"
+                   ng-click="clearData()" ng-disabled="isClearing">
+                      {{ClearBtnLabel}}
+                  </button>
               </div>
             </div>
           </div>
