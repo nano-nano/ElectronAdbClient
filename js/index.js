@@ -5,13 +5,7 @@ var appName = "ElectronAdbClient";
 var app = angular.module(appName, []);
 
 // モジュールのインポート
-const remote = require("electron").remote;
-const BrowserWindow = remote.BrowserWindow;
-const dialog = remote.dialog;
 const adb = require("../js/adb.js");
-
-// サブウィンドウのインスタンス
-var mSubWindow = null;
 
 // コントローラー
 app.controller('indexController',

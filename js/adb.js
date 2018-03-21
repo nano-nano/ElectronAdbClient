@@ -4,7 +4,7 @@ const exec = require('child_process').exec;
 
 exports.devices = function() {
     return new Promise(function(resolve, reject) {
-        exec('adb devices -l', function(error, stdout, stderr) {
+        exec("adb devices -l", function(error, stdout, stderr) {
             if (error) {
                 reject("エラーが発生しました");
             }
