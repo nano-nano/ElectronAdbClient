@@ -161,8 +161,8 @@ app.controller('indexController',
             scope.isUpdateInstall = false;
             scope.UninstallBtnLabel = "Uninstall";
             scope.isUninstalling = false;
-            $scope.ClearBtnLabel = "Clear";
-            $scope.isClearing = false;
+            scope.ClearBtnLabel = "Clear";
+            scope.isClearing = false;
         }
     }]
 );
